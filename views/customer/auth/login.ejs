@@ -1,0 +1,37 @@
+<%- include('../includes/head') %>
+<link rel="stylesheet" href="/styles/form.css">
+<link rel="stylesheet" href="/styles/auth.css">
+<link rel="stylesheet" href="/styles/base.css">
+</head>
+<body>
+	<%- include('../includes/header') %>
+	<main>
+		<h1>Login</h1>
+		<form action="/login" method="POST">
+			<p>
+				<label for="email">E-Mail</label>
+				<input type="eamil" name="email" id="email" required />
+			</p>
+
+			
+
+			<p>
+				<label for="password">Password</label>
+				<input
+					type="password"
+					name="password"
+					id="password"
+					required
+					minlength="6"
+				/>
+			</p>
+
+			
+
+			<button class="btn">Login</button>
+			<p id="switch-form"><a href="/signup">Singup Instead</a></p>
+		</form>
+	</main>
+
+	<%- include('../includes/footer') %>
+
