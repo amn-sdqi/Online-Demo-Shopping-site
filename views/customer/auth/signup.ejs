@@ -1,4 +1,4 @@
-<%- include('../includes/head') %>
+<%- include('../includes/head', { pageTitle: 'Signup' }) %>
 <link rel="stylesheet" href="/styles/form.css">
 <link rel="stylesheet" href="/styles/auth.css">
 <link rel="stylesheet" href="/styles/base.css">
@@ -8,6 +8,7 @@
 	<main>
 		<h1>Create New Account</h1>
 		<form action="/signup" method="POST">
+			<input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
 			<p>
 				<label for="email">E-Mail</label>
 				<input type="eamil" name="email" id="email" required />
