@@ -1,5 +1,7 @@
-const User = require("../models/user.models");
+const User = require('../models/user.models')
 const authUtil = require("../util/authentication");
+
+
 
 function getSignup(req, res) {
 	res.render("customer/auth/signup");
@@ -26,7 +28,7 @@ function getLogin(req, res) {
 
 async function login(req, res) {
 	const user = new User(req.body.email, req.body.password);
-	const existingUser = await user.getUserWithSameEmail;
+	const existingUser = await user.getUserWithSameEmail();
 
 	if (!existingUser) {
 		res.redirect("/login");
