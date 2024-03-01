@@ -7,16 +7,24 @@
 	<%- include('../includes/header') %>
 	<main>
 		<h1>Create New Account</h1>
+
+		<% if (inputData.errorMessage) { %>
+      <section class="alert">
+        <h2>Invalid Input</h2>
+        <p><%= inputData.errorMessage %></p>
+      </section>
+    <% } %>
+
 		<form action="/signup" method="POST">
 			<input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
 			<p>
 				<label for="email">E-Mail</label>
-				<input type="eamil" name="email" id="email" required />
+				<input type="eamil" name="email" id="email" value="<%= inputData.email %>" required />
 			</p>
 
 			<p>
 				<label for="confirm_email">Confirm E-Mail</label>
-				<input type="eamil" name="confirm_email" id="confirm_email" required />
+				<input type="eamil" name="confirm_email" id="confirm_email" value="<%= inputData.confirm_email %>" required />
 			</p>
 
 			<p>
@@ -25,6 +33,7 @@
 					type="password"
 					name="password"
 					id="password"
+					value="<%= inputData.password %>"
 					required
 					minlength="6"
 				/>
@@ -35,12 +44,12 @@
 
 			<p>
 				<label for="f_name">Name</label>
-				<input type="text" name="f_name" id="f_name" required />
+				<input type="text" name="f_name" id="f_name" value="<%= inputData.f_name %>" required />
 			</p>
 
 			<p>
 				<label for="street">street</label>
-				<input type="text" name="street" id="street" required />
+				<input type="text" name="street" id="street" value="<%= inputData.street %>" required />
 			</p>
 
 			<p>
@@ -49,6 +58,7 @@
 					type="text"
 					name="postal"
 					id="postal"
+					value="<%= inputData.postal %>"
 					required
 					minlength="6"
 					maxlength="6"
@@ -57,7 +67,7 @@
 
 			<p>
 				<label for="city">City</label>
-				<input type="text" name="city" id="city" required />
+				<input type="text" name="city" id="city" value="<%= inputData.city %>" required />
 			</p>
 
 			<button class="btn">Create Account</button>

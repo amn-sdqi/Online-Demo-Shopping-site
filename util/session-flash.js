@@ -1,17 +1,17 @@
-function getSessionData() {
-	const sessionData = req.session.flashData;
+function getSessionData(req) {
+  const sessionData = req.session.flashedData;
 
-	req.session.flashData = null;
+  req.session.flashedData = null;
 
-	return sessionData;
+  return sessionData;
 }
 
-function flashDataToSession(req, res, data, action) {
-	req.session.flashedData = data;
-	req.session.save(action);
+function flashDataToSession(req, data, action) {
+  req.session.flashedData = data;
+  req.session.save(action);
 }
 
 module.exports = {
-	getSessionData: getSessionData,
-	flashDataToSession: flashDataToSession,
+  getSessionData: getSessionData,
+  flashDataToSession: flashDataToSession
 };
