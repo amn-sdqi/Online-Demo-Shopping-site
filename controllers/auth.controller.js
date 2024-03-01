@@ -1,12 +1,22 @@
 const User = require("../models/user.models");
 const authUtil = require("../util/authentication");
 const validation = require("../util/validation");
+const sessionFlash = require("../util/session-flash");
 
 function getSignup(req, res) {
 	res.render("customer/auth/signup");
 }
 
 async function signup(req, res, next) {
+	const enteredData = {
+		email: req.body.email,
+		password: req.body.password,
+		name: req.body.fullname,
+		street: req.body.street,
+		postal: req.body.postal,
+		city: req.body.city,
+	};
+
 	if (
 		!validation.userDetailsValid(
 			req.body.email,
@@ -18,7 +28,13 @@ async function signup(req, res, next) {
 		) ||
 		!validation.emailIsConfrim(req.body.email, req.body.confirm_email)
 	) {
-		res.redirect("/signup");
+		sessionFlash.flashDataToSession(
+			req,
+			{ errorMessage: "Please check your input", ...enteredData },
+			function () {
+				res.redirect("/signup");
+			}
+		);
 		return;
 	}
 
@@ -34,7 +50,16 @@ async function signup(req, res, next) {
 	try {
 		const existingUser = await user.existingUser();
 		if (existingUser) {
-			res.redirect("/signup");
+			sessionFlash.flashDataToSession(
+				req,
+				{
+					errorMessage: "User exists already! ,try logging in instead",
+					...enteredData,
+				},
+				function () {
+					res.redirect("/signup");
+				}
+			);
 			return;
 		}
 
@@ -63,7 +88,17 @@ async function login(req, res, next) {
 	}
 
 	if (!existingUser) {
-		res.redirect("/login");
+		sessionFlash.flashDataToSession(
+			req,
+			{
+				errorMessage: "Incorrrect User",
+				email: req.body.email,
+				password: req.body.password,
+			},
+			function () {
+				res.redirect("/login");
+			}
+		);
 		return;
 	}
 
@@ -72,7 +107,17 @@ async function login(req, res, next) {
 	);
 
 	if (!passwordIsCorrect) {
-		res.redirect("/login");
+		sessionFlash.flashDataToSession(
+			req,
+			{
+				errorMessage: "Incorrrect password",
+				email: req.body.email,
+				password: req.body.password,
+			},
+			function () {
+				res.redirect("/login");
+			}
+		);
 		return;
 	}
 
