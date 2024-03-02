@@ -11,7 +11,7 @@ function getSignup(req, res) {
 			email: "",
 			confirm_Email: "",
 			password: "",
-			fullname: "",
+			f_name: "",
 			street: "",
 			postal: "",
 			city: "",
@@ -26,7 +26,7 @@ async function signup(req, res, next) {
 		email: req.body.email,
 		confirm_email: req.body.confirm_email,
 		password: req.body.password,
-		name: req.body.fullname,
+		f_name: req.body.f_name,
 		street: req.body.street,
 		postal: req.body.postal,
 		city: req.body.city,
@@ -36,7 +36,7 @@ async function signup(req, res, next) {
 		!validation.userDetailsValid(
 			req.body.email,
 			req.body.password,
-			req.body.fullname,
+			req.body.f_name,
 			req.body.street,
 			req.body.postal,
 			req.body.city
@@ -56,7 +56,7 @@ async function signup(req, res, next) {
 	const user = new User(
 		req.body.email,
 		req.body.password,
-		req.body.fullname,
+		req.body.f_name,
 		req.body.street,
 		req.body.postal,
 		req.body.city
@@ -115,7 +115,7 @@ async function login(req, res, next) {
 		sessionFlash.flashDataToSession(
 			req,
 			{
-				errorMessage: "Incorrrect User",
+				errorMessage: "Incorrrect User Name",
 				email: req.body.email,
 				password: req.body.password,
 			},

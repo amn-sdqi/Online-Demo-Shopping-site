@@ -2,13 +2,13 @@ function isEmpty(value) {
 	return !value || value.trim() === "";
 }
 
-function userDetailsValid(email, password, name, street, postal, city) {
+function userDetailsValid(email, password, f_name, street, postal, city) {
 	return (
 		email &&
 		email.includes("@") &&
 		password &&
 		password.trim().lenght > 5 &&
-		isEmpty(name) &&
+		isEmpty(f_name) &&
 		isEmpty(street) &&
 		isEmpty(postal) &&
 		isEmpty(city)

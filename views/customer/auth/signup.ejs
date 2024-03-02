@@ -9,22 +9,22 @@
 		<h1>Create New Account</h1>
 
 		<% if (inputData.errorMessage) { %>
-      <section class="alert">
-        <h2>Invalid Input</h2>
-        <p><%= inputData.errorMessage %></p>
-      </section>
-    <% } %>
+      		<section class="alert">
+        		<h2>Invalid Input</h2>
+        		<p><%= inputData.errorMessage %></p>
+      		</section>
+    	<% } %>
 
 		<form action="/signup" method="POST">
 			<input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
 			<p>
 				<label for="email">E-Mail</label>
-				<input type="eamil" name="email" id="email" value="<%= inputData.email %>" required />
+				<input type="email" name="email" id="email" value="<%= inputData.email %>" required />
 			</p>
 
 			<p>
 				<label for="confirm_email">Confirm E-Mail</label>
-				<input type="eamil" name="confirm_email" id="confirm_email" value="<%= inputData.confirm_email %>" required />
+				<input type="email" name="confirm_email" id="confirm_email" value="<%= inputData.confirm_email %>" required />
 			</p>
 
 			<p>

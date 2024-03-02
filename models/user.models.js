@@ -3,10 +3,10 @@ const bcrypt = require("bcryptjs");
 const db = require("../data/database");
 
 class User {
-	constructor(email, password, fullname, street, postal, city) {
+	constructor(email, password, f_name, street, postal, city) {
 		this.email = email;
 		this.password = password;
-		this.name = fullname;
+		this.name = f_name;
 		this.address = {
 			street: street,
 			postalCode: postal,
