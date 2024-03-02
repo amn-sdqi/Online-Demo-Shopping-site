@@ -8,6 +8,7 @@ function destroyUserSession(req) {
 	req.session.uid = null;
 }
 
+
 module.exports = {
 	createUserSission: createUserSission,
 	destroyUserSession: destroyUserSession,
